@@ -55,6 +55,7 @@ function timerStart(event) {
                 el.textContent = "00";
             };
             input.removeAttribute("disabled");
+            input.classList.remove("input-disabled");
             clearInterval(interval);
         };
     }, 1000);
