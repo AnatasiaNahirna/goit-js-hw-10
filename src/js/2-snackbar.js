@@ -7,26 +7,26 @@ form.addEventListener("submit", makePromise);
 
 function makePromise(ev) {
     ev.preventDefault()
+    const seconds = form.elements.delay.value;
     const promise = new Promise((resolve, reject) => {
         setTimeout(() => {
             if (form.elements.state.value === "fulfilled") {
-                resolve();
+                resolve(seconds);
             } else {
-                reject();
+                reject(seconds);
             }
         }, form.elements.delay.value)
     });
     promise.then(() => {
         iziToast.show({
-            message: `✅ Fulfilled promise in ${form.elements.delay.value}ms`,
+            message: `✅ Fulfilled promise in ${seconds}ms`,
             backgroundColor: "#59A10D",
             messageColor: "#fff",
             position: "topRight",
         });
-    });
-    promise.catch(() => {
+    }).catch(() => {
         iziToast.show({
-            message: `❌ Rejected promise in ${form.elements.delay.value}ms`,
+            message: `❌ Rejected promise in ${seconds}ms`,
             backgroundColor: "#EF4040",
             messageColor: "#fff",
             position: "topRight",
